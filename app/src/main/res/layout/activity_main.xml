@@ -58,6 +58,45 @@
         app:layout_constraintTop_toTopOf="parent"
         android:paddingTop="20dp"/>
 
+    <Button
+        android:id="@+id/main_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="开始"
+        android:textSize="20sp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:paddingTop="20dp"
+        >
+
+        <Button
+            android:id="@+id/main_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="保存"
+            android:textSize="20sp"
+            />
+
+        <Button
+            android:id="@+id/main_see"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:text="查看"
+            android:textSize="20sp"
+            />
+
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

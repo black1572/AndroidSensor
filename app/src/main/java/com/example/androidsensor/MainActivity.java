@@ -8,10 +8,13 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView x,y,z;
+    private Button button;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         x = findViewById(R.id.x);
         y = findViewById(R.id.y);
         z = findViewById(R.id.z);
+        button = findViewById(R.id.main_bt);
 
         //获取传感器管理器 SensorManager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -47,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
        /* ,mSensor,SensorManager.SENSOR_DELAY_NORMAL,null);*/
-        sm.registerListener(accelerometerListener,accelerometerSensor,SensorManager.SENSOR_DELAY_NORMAL);
+
+        button.setOnClickListener(view -> {
+            sm.registerListener(new MyListener(),accelerometerSensor,SensorManager.SENSOR_DELAY_NORMAL);
+        });
     }
 
     class MyListener implements SensorEventListener{
