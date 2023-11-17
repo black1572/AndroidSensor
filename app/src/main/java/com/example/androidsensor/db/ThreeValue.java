@@ -16,14 +16,21 @@ public class ThreeValue {
     public float z;
     public float fyj;
 
-    @Ignore
+    public ThreeValue(float x,float y,float z,float fyj){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.fyj = fyj;
+    }
+
+  /*  @Ignore
     public void threevalue(int id, float x, float y, float z, float fyj){
         this.id = id;
         this.x = x;
         this.y = y;
         this.z = z;
         this.fyj = fyj;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -63,13 +70,6 @@ public class ThreeValue {
 
     public float getFyj() {
         return fyj;
-    }
-
-    public void threevalue(float x, float y, float z, float fyj){
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.fyj = fyj;
     }
 
 }

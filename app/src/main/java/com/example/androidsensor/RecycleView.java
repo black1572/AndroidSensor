@@ -15,7 +15,7 @@ import java.util.List;
 
 public class RecycleView extends AppCompatActivity {
     private TreevalueAdapter mAdapter;
-    public static final String TAG = MainActivity.class.getSimpleName();
+
     private List<ThreeValue> mList = new ArrayList<>();
 
     @Override
