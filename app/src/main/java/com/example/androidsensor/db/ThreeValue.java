@@ -9,10 +9,10 @@ public class ThreeValue {
 
     @PrimaryKey
     public int id;
-    float x;
-    float y;
-    float z;
-    float fyj;
+    public float x;
+    public float y;
+    public float z;
+    public float fyj;
 
     @Ignore
     public void threevalue(int id, float x, float y, float z, float fyj){

@@ -36,6 +36,7 @@ dependencies {
     implementation("androidx.room:room-runtime:2.5.1")
     annotationProcessor("androidx.room:room-compiler:2.5.1")
 
+    implementation ("com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4")
 
 
     implementation("androidx.appcompat:appcompat:1.6.1")

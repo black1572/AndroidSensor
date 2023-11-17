@@ -8,7 +8,7 @@ import androidx.room.Update;
 import java.util.List;
 
 public interface ThreeValueDAO {
-    @Query("SELECT * FROM threevaluetable ORDER ID")
+    @Query("SELECT * FROM threevaluetable ORDER BY ID")
     List<ThreeValue>loadAllThreeValue();
     @Insert
     void insertPerson(ThreeValue threeValue);
