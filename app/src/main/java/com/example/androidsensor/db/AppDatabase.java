@@ -11,19 +11,4 @@ import androidx.room.RoomDatabase;
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ThreeValueDAO threeValueDAO();
 
-    public static AppDatabase getInstance(Context context) {
-        if (sInstance == null) {
-            synchronized (LOCK) {
-                Log.d("gao", "getInstance: ");
-                sInstance = Room.databaseBuilder(context.getApplicationContext(),
-                                AppDatabase.class, AppDatabase.DATABASE_NAME)
-                        .build();
-            }
-        }
-        Log.d("gao", "getInstance: finish");
-        return sInstance;
-    }
-    public abstract ThreeValueDAO threeValueDAO();
-
-
 }

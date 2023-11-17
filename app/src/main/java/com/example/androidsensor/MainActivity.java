@@ -1,9 +1,5 @@
 package com.example.androidsensor;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -14,13 +10,24 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.androidsensor.adapters.ThreevalueAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.androidsensor.adapter.TreevalueAdapter;
+import com.example.androidsensor.db.AppDatabase;
+import com.example.androidsensor.db.ThreeValue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView x,y,z;
     private Button button,btview,save;
     private RecyclerView mRecyclerView;
-    private ThreevalueAdapter mAdapter;
+    private TreevalueAdapter mAdapter;
+    public static final String TAG = MainActivity.class.getSimpleName();
+    private AppDatabase db;
+    private List<ThreeValue> mList = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         //获取加速度传感器 Sensor
         Sensor accelerometerSensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
         //定义传感器事件监听器
         SensorEventListener accelerometerListener = new SensorEventListener() {
             @Override
@@ -74,12 +80,6 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.main_bt);
         btview = findViewById(R.id.main_see);
         save = findViewById(R.id.main_save);
-        mRecyclerView = findViewById(R.id.recycleView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new ThreevalueAdapter(MainActivity.this);
-        mRecyclerView.setAdapter(mAdapter);
-
-
 
     }
 
