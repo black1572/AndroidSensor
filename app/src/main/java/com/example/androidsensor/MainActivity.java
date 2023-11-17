@@ -1,8 +1,11 @@
 package com.example.androidsensor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -11,10 +14,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.androidsensor.adapters.ThreevalueAdapter;
+
 public class MainActivity extends AppCompatActivity {
     private TextView x,y,z;
-    private Button button;
-
+    private Button button,btview,save;
+    private RecyclerView mRecyclerView;
+    private ThreevalueAdapter mAdapter;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -22,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        x = findViewById(R.id.x);
-        y = findViewById(R.id.y);
-        z = findViewById(R.id.z);
-        button = findViewById(R.id.main_bt);
+     //初始化数据
+        initView();
 
         //获取传感器管理器 SensorManager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -55,6 +59,28 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(view -> {
             sm.registerListener(new MyListener(),accelerometerSensor,SensorManager.SENSOR_DELAY_NORMAL);
         });
+        btview.setOnClickListener(view -> {
+            Intent intent = null;
+            intent = new Intent(MainActivity.this, RecycleView.class);
+            startActivity(intent);
+        });
+
+
+    }
+    private void initView(){
+        x = findViewById(R.id.x);
+        y = findViewById(R.id.y);
+        z = findViewById(R.id.z);
+        button = findViewById(R.id.main_bt);
+        btview = findViewById(R.id.main_see);
+        save = findViewById(R.id.main_save);
+        mRecyclerView = findViewById(R.id.recycleView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new ThreevalueAdapter(MainActivity.this);
+        mRecyclerView.setAdapter(mAdapter);
+
+
+
     }
 
     class MyListener implements SensorEventListener{

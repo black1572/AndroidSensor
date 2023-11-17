@@ -1,5 +1,6 @@
 package com.example.androidsensor.db;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -7,7 +8,8 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "threevaluetable")
 public class ThreeValue {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
     public int id;
     float x;
     float y;
