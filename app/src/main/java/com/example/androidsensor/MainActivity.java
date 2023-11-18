@@ -162,4 +162,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         db.threeValueDAO().insertPerson(new ThreeValue(X1,Y1,Z1,FYJ));
     }
 
+
+
 }
