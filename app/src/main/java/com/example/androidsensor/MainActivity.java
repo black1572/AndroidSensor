@@ -14,12 +14,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.androidsensor.adapter.TreevalueAdapter;
 import com.example.androidsensor.db.AppDatabase;
 import com.example.androidsensor.db.ThreeValue;
 
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView x,y,z;
     public static final String TAG = MainActivity.class.getSimpleName();
     private float X1,Y1,Z1,FYJ;
-    private Button button,btview,save;
+    private Button button;
     private AppDatabase db;
     private List<ThreeValue> mList = new ArrayList<>();
 
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             addvalue();
         }else if (view.getId() == R.id.main_see){
             Intent intent = null;
-            intent = new Intent(MainActivity.this, RecycleView.class);
+            intent = new Intent(MainActivity.this, RecycleViewActivity.class);
             startActivity(intent);
         }
     }
