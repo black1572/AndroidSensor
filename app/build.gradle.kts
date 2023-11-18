@@ -27,6 +27,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+
 }
 
 dependencies {
@@ -48,5 +53,7 @@ dependencies {
 
     implementation ("com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4")
 
+    //版本问题
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
 
 }

@@ -18,37 +18,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="x轴"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/tv_id"
+        app:layout_constraintStart_toEndOf="@+id/tv_x"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_age"
+        android:id="@+id/tv_y"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="y轴"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_y"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_nickname"
+        android:id="@+id/tv_z"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="z轴"
         android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/tv_age"
+        app:layout_constraintStart_toEndOf="@+id/tv_z"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_address"
+        android:id="@+id/tv_fyj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -56,7 +56,7 @@
         android:text="fyj"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_nickname"
+        app:layout_constraintStart_toEndOf="@+id/tv_fyj"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View

@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidsensor.adapter.TreevalueAdapter;
 import com.example.androidsensor.db.AppDatabase;
 import com.example.androidsensor.db.ThreeValue;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecycleView extends AppCompatActivity {
-    private TreevalueAdapter mAdapter;
-    public static final String TAG = MainActivity.class.getSimpleName();
-    private List<ThreeValue> mList = new ArrayList<>();
+public class RecycleView extends BasicActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +23,17 @@ public class RecycleView extends AppCompatActivity {
         initView();
     }
     private void initView() {
+        MaterialToolbar toolbar = findViewById(R.id.materialToolbar);
+        RecyclerView rvText = findViewById(R.id.recycleView);
+        back(toolbar);
 
-        //列表
-        RecyclerView rv = findViewById(R.id.recycleView);
-        mAdapter = new TreevalueAdapter(R.layout.item_rc,mList);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(mAdapter);
+        //获取适配器实例
+       TreevalueAdapter stringAdapter = new TreevalueAdapter(getStrings());
+        //配置适配器
+        rvText.setAdapter(stringAdapter);
+        //配置布局管理器
+        rvText.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 }
