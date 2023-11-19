@@ -7,20 +7,28 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.androidsensor.BasicBean;
+import com.example.androidsensor.db.AppDatabase;
+import com.example.androidsensor.db.ThreeValue;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BasicActivity extends AppCompatActivity {
+    private AppDatabase db;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initDB();
     }
-
+    //初始化数据库
+    private void initDB(){
+        db = AppDatabase.getInstance(getApplicationContext());
+    }
     protected void back(MaterialToolbar toolbar) {
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
@@ -36,13 +44,24 @@ public class BasicActivity extends AppCompatActivity {
     /**
      * 获取字符串列表
      */
-    protected List<String> getStrings() {
-        List<String> lists = new ArrayList<>();
+    protected List<List<Float>> getStrings() {
+     /*   List<String> lists = new ArrayList<>();
         int num = (int) (1 + Math.random() * (50 - 10 + 1));
         for (int i = 0; i < num; i++) {
             lists.add("第 " + i + " 条数据");
         }
-        return lists;
+        return lists;*/
+        List<List<Float>> dataList = new ArrayList<>();
+        List<ThreeValue> threeValues = db.threeValueDAO().loadAllThreeValue();
+        for (ThreeValue threeValue : threeValues) {
+            List<Float> dataRow = new ArrayList<>();
+            dataRow.add((float) threeValue.getX());
+            dataRow.add((float) threeValue.getY());
+            dataRow.add((float) threeValue.getZ());
+            dataRow.add((float) threeValue.getFyj());
+            dataList.add(dataRow);
+        }
+        return dataList;
     }
 
     protected List<BasicBean> getBasicBeans() {
