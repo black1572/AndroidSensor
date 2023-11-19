@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.androidsensor.adapter.TreevalueAdapter;
 import com.example.androidsensor.db.AppDatabase;
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView x,y,z;
+    private float X,Y,Z,FYJ;
     private Button button,btview,save;
     private RecyclerView mRecyclerView;
     private TreevalueAdapter mAdapter;
@@ -35,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     //初始化数据
+        //初始化数据
         initView();
+        //初始化数据库
+        initDB();
 
         //获取传感器管理器 SensorManager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -70,8 +74,22 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(MainActivity.this, RecycleView.class);
             startActivity(intent);
         });
+        save.setOnClickListener(view -> {
+            insert();
+        });
 
 
+    }
+
+    //求俯仰角函数
+    public float calculatePitch(double ax, double ay, double az) {
+        double roll = Math.atan2(ay, az);
+        double pitch = Math.atan2(-ax, Math.sqrt(ay * ay + az * az));
+        return (float) Math.toDegrees(pitch);
+    }
+
+    private void initDB(){
+       db = AppDatabase.getInstance(getApplicationContext());
     }
     private void initView(){
         x = findViewById(R.id.x);
@@ -82,9 +100,7 @@ public class MainActivity extends AppCompatActivity {
         save = findViewById(R.id.main_save);
 
     }
-
     class MyListener implements SensorEventListener{
-
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
             float x1 = sensorEvent.values[0];
@@ -93,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
             x.setText("当前x为:"+x1);
             y.setText("当前x为:"+y1);
             z.setText("当前x为:"+z1);
+            X = x1;
+            Y = y1;
+            Z = z1;
+            FYJ = calculatePitch(X,Y,Z);
         }
 
         @Override
@@ -100,4 +120,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    private void insert(){
+        final ThreeValue threeValue = new ThreeValue();
+        threeValue.threevalue(X,Y,Z,FYJ);
+        db.threeValueDAO().insertPerson(threeValue);
+    }
+
 }

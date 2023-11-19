@@ -2,17 +2,11 @@ package com.example.androidsensor;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidsensor.adapter.TreevalueAdapter;
-import com.example.androidsensor.db.AppDatabase;
-import com.example.androidsensor.db.ThreeValue;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RecycleView extends BasicActivity {
 
